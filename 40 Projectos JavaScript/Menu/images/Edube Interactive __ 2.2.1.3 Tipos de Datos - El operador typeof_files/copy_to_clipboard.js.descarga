@@ -1,0 +1,32 @@
+$(document).ready(function () {
+    $('.copy').each(function () {
+        $(this).append('<i class="fa fa-clipboard icon-copy"></i>')
+    });
+
+    $('.icon-copy').click(function () {
+        const code = $(this).parent().text();
+
+        let textarea = document.createElement('textarea');
+
+        textarea.style.position = 'fixed';
+        textarea.style.top = 0;
+        textarea.style.left = 0;
+        textarea.style.width = '2em';
+        textarea.style.height = '2em';
+        textarea.style.padding = 0;
+        textarea.style.border = 'none';
+        textarea.style.outline = 'none';
+        textarea.style.boxShadow = 'none';
+        textarea.style.background = 'transparent';
+
+        textarea.value = code;
+
+        document.body.appendChild(textarea);
+        textarea.focus();
+        textarea.select();
+
+        document.execCommand('copy');
+
+        document.body.removeChild(textarea);
+    });
+});

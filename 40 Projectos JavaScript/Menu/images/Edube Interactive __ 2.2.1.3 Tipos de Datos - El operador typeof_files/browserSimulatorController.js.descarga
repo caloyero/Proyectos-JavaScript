@@ -1,0 +1,63 @@
+browserSimulatorApp.controller('BrowserSimulatorController',
+    ['$scope', '$sce',
+        function ($scope, $sce) {
+
+    $scope.errorEventListenerEnabled = true;
+
+    window.update = function (data) {
+        $scope.$evalAsync(function () {
+            $scope['html'] = $sce.trustAsHtml(data.html);
+            $scope['css'] = $sce.trustAsHtml(data.css);
+        });
+
+        updateScriptTag(data.js);
+    };
+
+    function updateScriptTag(code) {
+        removeScriptTag('js');
+        checkRegisteredEventListeners(code);
+        var script = createScriptTag('js', '(function() {' + removeComments(code) + '})();');
+
+        var codeWrapper = getCodeWrapper();
+        codeWrapper.append(script);
+    }
+
+    function removeScriptTag(id) {
+        document.getElementById(id).remove();
+    }
+
+    function getCodeWrapper() {
+        return document.getElementById('codeWrapper');
+    }
+
+    function createScriptTag(id, code) {
+        var script = document.createElement('script');
+        script.setAttribute('id', id);
+        script.innerHTML = code;
+        return script;
+    }
+
+    function removeComments(code) {
+        return code.replace(/\/\*[\s\S]*?\*\/|\/\/.*/g,'');
+    }
+
+    $scope.run = function () {
+        var event = new CustomEvent('runCode', {});
+        window.parent.document.dispatchEvent(event)
+    };
+
+    window.addEventListener('error', (event) => {
+        if ($scope.errorEventListenerEnabled) {
+            console.appendLog(event.message, 'log-error');
+        }
+    });
+
+    function checkRegisteredEventListeners(code) {
+        if (code.indexOf("window.addEventListener('error'") !== -1 || code.indexOf('window.onerror') !== -1) {
+            $scope.errorEventListenerEnabled = false;
+        } else {
+            $scope.errorEventListenerEnabled = true;
+        }
+    }
+
+}]);

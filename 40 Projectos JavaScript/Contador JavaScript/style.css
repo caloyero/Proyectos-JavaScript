@@ -1,0 +1,48 @@
+body
+{
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+}
+.container
+{
+    width: 400px;
+    height: 400px;
+    text-align: center;
+-webkit-box-shadow: 10px 29px 34px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 10px 29px 34px 0px rgba(0,0,0,0.75);
+box-shadow: 10px 29px 34px 0px rgba(0,0,0,0.75);
+border-radius: 15px;
+
+}
+h1{
+    font-family: monospace;
+    color: darkblue;
+    font-size: 4rem;
+}
+span
+{
+    font-size: 4.5rem ;
+}
+
+.buttons
+{
+    font-family: monospace;
+    color: white;
+    border-radius: 15px;
+    padding: 0.5rem;
+    margin: 3px;
+}
+
+.decrese
+{
+    background-color: crimson;
+}
+.reset
+{
+    background-color: black;
+}
+.increset
+{
+    background-color: rgb(20, 83, 220);
+}

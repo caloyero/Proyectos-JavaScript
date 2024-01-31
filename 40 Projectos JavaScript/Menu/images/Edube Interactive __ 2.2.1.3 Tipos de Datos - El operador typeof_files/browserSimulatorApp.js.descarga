@@ -1,0 +1,1 @@
+var browserSimulatorApp = angular.module('BrowserSimulatorApp', ['ngSanitize']);

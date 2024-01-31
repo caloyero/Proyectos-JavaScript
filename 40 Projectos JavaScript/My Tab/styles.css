@@ -1,0 +1,100 @@
+.container
+{
+    /* background-color: #f5f5f5; */
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.container-btn
+{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    justify-content: center;margin: 1rem;
+    
+}
+.btn
+{
+    margin: 0.5em;
+}
+
+.content{
+    /* visibility: hidden; */
+    display: none;
+    border-radius: 15px;
+    
+}
+.active
+{
+    background-color: #F9F5F6;
+    /* visibility: visible; */
+    display: block;
+    padding: 1rem;
+    /* transition: all 1.3s linear; */
+    transition-property: all;
+    transition-duration: 0.7s;
+    transition-timing-function: linear;
+    transform: translate(20px);
+}
+.active-btn
+{
+    background-color: #F9F5F6;
+    /* visibility: visible; */
+    display: block;
+   /*  padding: 1rem; */
+}
+
+/* menu deslizable */
+
+.menu-container
+{
+    display: flex;
+    background-color: #F9F5F6;
+    justify-content: center;
+    margin: 1em;
+    flex-direction: row-reverse;
+    padding: 1.4em;
+}
+
+.btn-hamburger
+{
+    width: 25px;
+    height: 25px;
+    margin-left: 2em;
+}
+
+.list-container
+{
+    visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+}
+
+.show-list
+{
+    visibility: visible;
+    background-color: aquamarine;
+    display: flex;
+  transition-property: all;
+  transition-duration: 0.7s;
+  transition-timing-function: linear;
+  transform: translate(20px);
+}
+
+li
+{
+    list-style:none;
+}
+
+.container-reloj
+{
+    display:flex;
+    font-size: 2rem;
+}

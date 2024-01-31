@@ -1,0 +1,51 @@
+let console = {
+    timerTable: {},
+    panel: parent.document.getElementById('consolePanel'),
+    debug: function (msg) {
+        this.appendLog(msg);
+    },
+    error: function (msg) {
+        this.appendLog(msg);
+    },
+    info: function (msg) {
+        this.appendLog(msg);
+    },
+    log: function () {
+        if (arguments.length === 1) {
+            this.appendLog(arguments[0]);
+        } else {
+            let log = '';
+
+            for (let i in arguments) {
+                log += ' ' + arguments[i];
+            }
+
+            this.appendLog(log);
+        }
+    },
+    time: function (label) {
+        this.timerTable[label] = window.performance ? window.performance.now() : new Date().getTime();
+        this.appendLog(label);
+    },
+    timeEnd: function (label) {
+        if (this.timerTable[label]) {
+            const end = window.performance ? window.performance.now() : new Date().getTime();
+            const duration = end - this.timerTable[label];
+            delete this.timerTable[label];
+            this.appendLog((label ? label : 'default') + ': ' + duration + ' ms');
+        }
+
+        this.appendLog(label);
+    },
+    appendLog: function (msg, className = null) {
+        let node = document.createElement('div');
+        node.classList.add('log');
+
+        if (className) {
+            node.classList.add(className);
+        }
+
+        node.innerHTML = msg;
+        this.panel.appendChild(node);
+    }
+};
